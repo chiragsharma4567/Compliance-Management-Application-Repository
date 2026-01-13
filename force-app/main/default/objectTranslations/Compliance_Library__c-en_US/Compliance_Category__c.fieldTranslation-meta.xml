@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Compliance Category --></label>
+    <name>Compliance_Category__c</name>
+    <picklistValues>
+        <masterLabel>Facility ISO</masterLabel>
+        <translation><!-- Facility ISO --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Human Resource</masterLabel>
+        <translation><!-- Human Resource --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Logistics</masterLabel>
+        <translation><!-- Logistics --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Workplace</masterLabel>
+        <translation><!-- Workplace --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

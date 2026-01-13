@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>Compliance_Assignment__c.Frequency__c</field>
+    </columns>
+    <columns>
+        <field>Compliance_Assignment__c.Next_Task_Creation_Date__c</field>
+    </columns>
+    <columns>
+        <field>FK_$Compliances_Item__c.Compliance__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>Upcoming Task Creation Date</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntityCustomEntity$Company__c$Compliance_Assignment__c@Compliance_Assignment__c.Compliance_Item__c</reportType>
+    <scope>useronly</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

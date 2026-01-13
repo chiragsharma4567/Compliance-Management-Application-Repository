@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>true</doesSendEmailToMembers>
+    <name>Compliance Review Queue</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>Compliance_Team</publicGroup>
+        </publicGroups>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Company_Team_Member__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>Company__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>Compliance_Library__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>Task</sobjectType>
+    </queueSobject>
+</Queue>

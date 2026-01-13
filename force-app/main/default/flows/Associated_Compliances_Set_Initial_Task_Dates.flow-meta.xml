@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <environments>Default</environments>
+    <formulas>
+        <name>formula_FirstTaskCreationDate</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.Compliance_Item__r.Start_Date__c} - {!$Record.Compliance_Item__r.Task_Creation_Days_Before_Due_Date__c}</expression>
+    </formulas>
+    <formulas>
+        <name>NextTaskCreationDate</name>
+        <dataType>Date</dataType>
+        <expression>CASE(TEXT({!$Record.tstcmp__Compliance_Item__r.tstcmp__Frequency__c}),
+  &quot;Weekly&quot;, ({!$Flow.CurrentDate} + 7),
+  &quot;Monthly&quot;, ADDMONTHS({!$Flow.CurrentDate}, 1),
+  &quot;Quarterly&quot;, ADDMONTHS({!$Flow.CurrentDate}, 3),
+  &quot;Half Yearly&quot;, ADDMONTHS({!$Flow.CurrentDate}, 6),
+  &quot;Yearly&quot;, ADDMONTHS({!$Flow.CurrentDate}, 12),
+  &quot;Annually&quot;, ADDMONTHS({!$Flow.CurrentDate}, 12),
+  {!$Flow.CurrentDate}
+) - {!$Record.tstcmp__Compliance_Item__r.tstcmp__Task_Creation_Days_Before_Due_Date__c}</expression>
+    </formulas>
+    <interviewLabel>Associated Compliances: Set Initial Task Dates {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Associated Compliances: Set Initial Task Dates</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Stamp_Initial_Task_Dates</name>
+        <label>Stamp Initial Task Dates</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Criticality_Level__c</field>
+            <value>
+                <elementReference>$Record.Compliance_Item__r.Criticality_Level__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Frequency__c</field>
+            <value>
+                <elementReference>$Record.Compliance_Item__r.Frequency__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Next_Task_Creation_Date__c</field>
+            <value>
+                <elementReference>NextTaskCreationDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Start_Date__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Active</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Stamp_Initial_Task_Dates</targetReference>
+        </connector>
+        <object>Compliance_Assignment__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
